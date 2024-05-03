@@ -7,6 +7,3 @@ class Problem:
     def goal_test(self, state):
         return state == self.goal_state
     
-    def expand(self, node):
-        expanded_nodes = []
-        return expanded_nodes
