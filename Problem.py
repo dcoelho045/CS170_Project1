@@ -5,8 +5,7 @@ class Problem:
         self.operators = operators
 
     def goal_test(self, state):
-        return state == self.goal_state
-    
+        return state == self.goal_state    
     def expand(self, node):
         expanded_nodes = []
         directions = {'up': -1, 'down': 1, 'left': -1, 'right': 1}
@@ -25,3 +24,4 @@ class Problem:
                     new_state[x][y], new_state[x][new_y] = new_state[x][new_y], new_state[x][y]
                     expanded_nodes.append(Node(new_state, node, move, node.path_cost + 1))
         return expanded_nodes
+
