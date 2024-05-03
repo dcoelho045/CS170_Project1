@@ -9,4 +9,19 @@ class Problem:
     
     def expand(self, node):
         expanded_nodes = []
+        directions = {'up': -1, 'down': 1, 'left': -1, 'right': 1}
+        x, y = next((i, j) for i in range(3) for j in range(3) if node.state[i][j] == 0)
+        for move in self.operators:
+            if move in ['up', 'down']:
+                new_x = x + directions[move]
+                if 0 <= new_x < 3:
+                    new_state = [row[:] for row in node.state]
+                    new_state[x][y], new_state[new_x][y] = new_state[new_x][y], new_state[x][y]
+                    expanded_nodes.append(Node(new_state, node, move, node.path_cost + 1))
+            else:
+                new_y = y + directions[move]
+                if 0 <= new_y < 3:
+                    new_state = [row[:] for row in node.state]
+                    new_state[x][y], new_state[x][new_y] = new_state[x][new_y], new_state[x][y]
+                    expanded_nodes.append(Node(new_state, node, move, node.path_cost + 1))
         return expanded_nodes
